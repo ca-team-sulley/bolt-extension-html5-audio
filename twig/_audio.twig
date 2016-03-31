@@ -1,0 +1,17 @@
+<audio controls id="audioPlayer_{{ key }}" preload="none">
+    {% if audio.audio_filename is defined %}
+        <source id="audio_src_{{ key }}" src="{{ paths.files ~ audio.audio_filename }}">
+    {% else %}
+        <source id="audio_src_{{ key }}" src="" type="">
+    {% endif %}
+</audio>
+
+<script type="text/javascript">
+    /**
+     * Create an instance of Audio and instantiate it
+     */
+    $(document).ready( function() {
+        var audio = new Audio('{{ key }}', {{ option.extensions|json_encode()|raw }});
+        audio.init();
+    });
+</script>

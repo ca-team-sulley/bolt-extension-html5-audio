@@ -1,0 +1,4 @@
+# Setting the Enabled option to false for Waveform will cause the extension to use standard HTML5 audio element instead.
+
+waveform:
+  enabled: true

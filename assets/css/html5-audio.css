@@ -1,0 +1,40 @@
+.waveform_view{
+    width: 100%;
+    float: left;
+    margin-bottom: .5em;
+}
+
+.wave{
+    border: 1px solid #CCCCCC;
+    margin-bottom: 5px;
+}
+
+.waveform_buttons {
+    vertical-align: top !important;
+    margin-left: 5px;
+    display: inline-block;
+}
+
+.wave_zoom{
+    text-align: center;
+    margin-bottom: 1em;
+}
+
+.wave_zoom .fa{
+    font-size: 1.2em;
+}
+
+.wave_zoom input[type='range']{
+    display: inline-block;
+    width: 90%
+}
+
+.wave_controls{
+    text-align: center;
+    margin-left: 5px;
+}
+.track-time{
+    font-size: 1.2em;
+    margin-top: 5px;
+    margin-right: 2px;
+}

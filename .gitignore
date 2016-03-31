@@ -1,0 +1,4 @@
+.DS_*
+composer.lock
+vendor/
+tests/tmp/
