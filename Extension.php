@@ -19,15 +19,7 @@ class Extension extends BaseExtension
             $this->app->before(array($this, 'before'));
             // Enable HTML Snippets
             if (version_compare($this->app['bolt_version'], '2.0.0') >= 0) {
-                // For Bolt 2.3 +
-                if (version_compare($this->app['bolt_version'], '2.3.0') >= 0) {
-                    $this->app->before(function (Request $request) {
-                        $request->attributes->set('allow_snippets', true);
-                    });
-                } else {
-                    // For Bolt 2.0 - 2.2
-                    $this->app['htmlsnippets'] = true;
-                }
+                $this->app['htmlsnippets'] = true;
             }
             // Override the default twig files with the ones under templates
             $this->app['twig.loader.filesystem']->prependPath(__DIR__ . '/twig');
