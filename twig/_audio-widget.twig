@@ -3,7 +3,7 @@
 {% set option = {
 class:       field.class|default(''),
 label:       field.label|default(''),
-extensions:  field.extensions|default(['mp3','wav','ogg','m4a']),
+extensions:  app.extensions.enabled.Html5Audio.config['allowed-filetypes'],
 upload:      field.upload|default(''),
 can_upload:  field.canUpload
 } %}

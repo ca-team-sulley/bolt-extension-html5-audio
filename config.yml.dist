@@ -1,4 +1,10 @@
-# Setting the Enabled option to false for Waveform will cause the extension to use standard HTML5 audio element instead.
+# Accepted Types are the audio file types that you wish to allow. Keep in mind that this will not override any browser compatabilities
+allowed-filetypes:
+  - mp3
+  - wav
+  - ogg
+  - m4a
 
+# Setting the Enabled option to false for Waveform will cause the extension to use standard HTML5 audio element instead.
 waveform:
   enabled: true

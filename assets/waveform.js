@@ -4,10 +4,11 @@
  * @constructor
  */
 function AudioWaveform(element, types) {
-    this.container = $('#editcontent').find('fieldset#'+element);
+    this.container = $(document).find('fieldset#'+element);
     this.timer = 0;
     this.wavesurfer = null;
     this.file = this.container.find('input.audioinput');
+    this.source = this.container.find('source').attr('src');
     this.types = types;
     this.filepath = document.location.origin + '/files/';
 }
@@ -95,11 +96,15 @@ AudioWaveform.prototype.showError = function (msgConfig) {
  *
  */
 AudioWaveform.prototype.loadFile = function () {
-    var type = this.file.val().split('.').pop();
-    var valid_type = $.inArray(type, this.types);
+    if(this.types != undefined){
+        var type = this.file.val().split('.').pop();
+        var valid_type = $.inArray(type, this.types);
 
-    if(valid_type > -1){
-        this.wavesurfer.load(this.filepath + this.file.val());
+        if(valid_type > -1){
+            this.wavesurfer.load(this.filepath + this.file.val());
+        }
+    }else{
+        this.wavesurfer.load(this.filepath + this.source);
     }
 };
 
