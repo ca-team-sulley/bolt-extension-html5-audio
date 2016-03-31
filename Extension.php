@@ -17,10 +17,10 @@ class Extension extends BaseExtension
 
         if ($this->app['config']->getWhichEnd()=='backend') {
             $this->app->before(array($this, 'before'));
+            
             // Enable HTML Snippets
-            if (version_compare($this->app['bolt_version'], '2.0.0') >= 0) {
-                $this->app['htmlsnippets'] = true;
-            }
+            $this->app['htmlsnippets'] = true;
+
             // Override the default twig files with the ones under templates
             $this->app['twig.loader.filesystem']->prependPath(__DIR__ . '/twig');
 
