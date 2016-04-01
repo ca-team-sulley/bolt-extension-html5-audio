@@ -77,7 +77,7 @@ or verify for us.
   - Japanese
   - Dutch - Translation Verified
   - Polish
-  - Portuguese
+  - Portuguese - Translation Verified
   - Russian
   - Swedish - Translation Verified
 
