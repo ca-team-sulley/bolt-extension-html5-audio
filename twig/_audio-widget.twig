@@ -13,7 +13,7 @@ can_upload:  field.canUpload
 {% set attr_filepath = {
 class:       'form-control audioinput',
 id:          'field-' ~ key,
-name:        name  ~ '[audio_filename]',
+name:        name,
 type:        'text',
 placeholder: __('field.general.allowed-filetypes') ~ ' ' ~ option.extensions|join(', ') ~ ' …',
 value:       context.content.get(contentkey),
@@ -21,11 +21,11 @@ value:       context.content.get(contentkey),
 
 {% set attr_upload = {
 accept:       option.extensions ? '.' ~ option.extensions|join(',.') : '',
-data_upload:  {type: 'Audio', key: key}|json_encode(),
+data_upload:  {type: 'File', key: key}|json_encode(),
 data_url:     url('upload', {'handler': option.upload}),
 id:           'audioupload-' ~ key,
-name:         'audio[]',
-type:         'audio',
+name:         'files[]',
+type:         'file',
 } %}
 
 {#=== BLOCKS =========================================================================================================#}
