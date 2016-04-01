@@ -8,14 +8,14 @@ Please edit config options to suit your needs before using this extension.
 The allowed-filetypes configuration key lets you add additional file types to the allowed-filetypes array.
 The enabled key allows you to enable the javascript and canvas based waveform player. By setting false, it will use the html5 audio element.
 
-### Accepted Types are the audio file types that you wish to allow. Keep in mind that this will not override any browser compatabilities
+Accepted Types are the audio file types that you wish to allow. Keep in mind that this will not override any browser compatabilities
 allowed-filetypes:
   - mp3
   - wav
   - ogg
   - m4a
 
-#### Setting the Enabled option to false for Waveform will cause the extension to use standard HTML5 audio element instead.
+Setting the Enabled option to false for Waveform will cause the extension to use standard HTML5 audio element instead.
 waveform:
   enabled: true
 
