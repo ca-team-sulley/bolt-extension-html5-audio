@@ -1,1 +1,4 @@
 "info": "Use this field to upload an audio file which will display in an audio player on the website. Click the button to upload a file from your computer, or if you're using a recent version of Chrome or Firefox, you can simply drag'n'drop the file from your desktop or from a different browser window. <br /> Alternatively, you can use a previously uploaded file. To select a previously uploaded file, just type (part) of the file name in the input area, and it will be autocompleted."
+"play": "Play"
+"pause": "Pause"
+"stop": "Stop"

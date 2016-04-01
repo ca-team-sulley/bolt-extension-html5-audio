@@ -1,2 +1,5 @@
 #Translation Verified by Veronica Carrillo-Marquez 3-30-16
 "info": "Utiliza este campo para subir un archivo de audio que se incluirá en un reproductor de audio de forma de onda usado dentro de una página web. Pulsa el botón para subir un fichero de tu ordenador o, si utilizas una versión reciente de Chrome o Firefox, puedes simplemente arrastrar y soltar el fichero desde tu escritorio o desde otra ventana del navegador.<br/> También puedes usar una imagen subida previamente. Para seleccionar un fichero subido previamente, escribe un fragmento del nombre del fichero en el área de entrada y será autocompletado."
+"play": "Play"
+"pause": "Pause"
+"stop": "Stop"
