@@ -54,8 +54,8 @@ pages:
 
 ### Twig Function (Theme Template)
 
-    In this example, the name of the field on the backend is audio. The second parameter passed in the twig function is the fieldname.
-    By passing this, it ensures that the proper field will be referenced from the player:
+In this example, the name of the field on the backend is audio. The second parameter passed in the twig function is the fieldname.
+By passing this, it ensures that the proper field will be referenced from the player:
 
 ```Twig
     {{ audioPlayer(record.audio, 'audio')|raw }}
@@ -72,7 +72,7 @@ pages:
     Hungarian
     Italian
     Japanese
-    Dutch - Translation Verified 
+    Dutch - Translation Verified
     Polish
     Portuguese
     Russian
