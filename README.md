@@ -53,7 +53,6 @@ pages:
 ```
 
 ### Twig Function (Theme Template)
-
 In this example, the name of the field on the backend is audio. The second parameter passed in the twig function is the fieldname.
 By passing this, it ensures that the proper field will be referenced from the player:
 
@@ -79,5 +78,7 @@ By passing this, it ensures that the proper field will be referenced from the pl
     Swedish - Translation Verified
 
 ## Support
-If you run into issues or need a new feature, please open a ticket over at [https://github.com/ca-team-sulley/bolt-extension-html5-audio/issues](https://github.com/ca-team-sulley/bolt-extension-html5-audio/issues)
-... or fix it yourself, pull-requests are welcome =)
+If you run into issues or need a new feature, please open a ticket over at:
+[https://github.com/ca-team-sulley/bolt-extension-html5-audio/issues](https://github.com/ca-team-sulley/bolt-extension-html5-audio/issues)
+
+Or feel free to fix it yourself, pull-requests are welcome =)
