@@ -61,21 +61,25 @@ By passing this, it ensures that the proper field will be referenced from the pl
 ```
 
 ## Translations
-    Chinese
-    Czech
-    German - Translation Verified
-    English - Translation Verified
-    Spanish - Translation Verified
-    French
-    Hindi - Translation Verified
-    Hungarian
-    Italian
-    Japanese
-    Dutch - Translation Verified
-    Polish
-    Portuguese
-    Russian
-    Swedish - Translation Verified
+In the spirit of keeping up with the all important i18n, we have attempted to cover all language support for the plugin
+that could come up. If there is a translation listed here that is not verified or missing, please feel free to contribute
+or verify for us.
+
+  - Chinese
+  - Czech
+  - German - Translation Verified
+  - English - Translation Verified
+  - Spanish - Translation Verified
+  - French
+  - Hindi - Translation Verified
+  - Hungarian
+  - Italian
+  - Japanese
+  - Dutch - Translation Verified
+  - Polish
+  - Portuguese
+  - Russian
+  - Swedish - Translation Verified
 
 ## Support
 If you run into issues or need a new feature, please open a ticket over at:
