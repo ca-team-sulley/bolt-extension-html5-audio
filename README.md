@@ -23,6 +23,7 @@ waveform:
 
 ### Contenttypes.yml (Add Field to Pages labeled as Audio...)
 
+```YML
 pages:
     name: Pages
     singular_name: Page
@@ -56,6 +57,7 @@ pages:
     In this example, the name of the field on the backend is audio. The second parameter passed in the twig function is the fieldname.
     By passing this, it ensures that the proper field will be referenced from the player:
 
+```Twig
     {{ audioPlayer(record.audio, 'audio')|raw }}
 
 ## Support
