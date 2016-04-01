@@ -50,7 +50,7 @@ pages:
             filter: '*.twig'
     taxonomy: [ chapters ]
     recordsperpage: 100
-
+```
 
 ### Twig Function (Theme Template)
 
@@ -59,6 +59,24 @@ pages:
 
 ```Twig
     {{ audioPlayer(record.audio, 'audio')|raw }}
+```
+
+## Translations
+    Chinese
+    Czech
+    German - Translation Verified
+    English - Translation Verified
+    Spanish - Translation Verified
+    French
+    Hindi - Translation Verified
+    Hungarian
+    Italian
+    Japanese
+    Dutch - Translation Verified 
+    Polish
+    Portuguese
+    Russian
+    Swedish - Translation Verified
 
 ## Support
 If you run into issues or need a new feature, please open a ticket over at [https://github.com/ca-team-sulley/bolt-extension-html5-audio/issues](https://github.com/ca-team-sulley/bolt-extension-html5-audio/issues)
