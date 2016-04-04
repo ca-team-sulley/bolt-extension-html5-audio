@@ -8,6 +8,7 @@ function AudioWaveform(element, types) {
     this.timer = 0;
     this.wavesurfer = null;
     this.file = this.container.find('input.audioinput');
+    this.fileName = this.file.val();
     this.source = this.container.find('source').attr('src');
     this.types = types;
     this.filepath = document.location.origin + '/files/';
@@ -109,12 +110,30 @@ AudioWaveform.prototype.loadFile = function () {
 };
 
 /**
+ * Listens for file changes, as JS made updates to the hidden field do not
+ * trigger any events
+ */
+AudioWaveform.prototype.listenForFileChange = function () {
+    var self = this;
+
+    setTimeout(function () {
+        if (self.file.val() !== self.fileName) {
+            self.fileName = self.file.val();
+            self.file.trigger('change');
+        }
+
+        self.listenForFileChange();
+    }, 500);
+};
+
+/**
  * init - AudioWaveform init method
  */
 AudioWaveform.prototype.init = function () {
     // generate the waveform and clean up the audio edit modal, as well as set up the basic element variables
     this.generateWaveform();
     this.setDomElements();
+    this.listenForFileChange();
 
     var self = this;
 
@@ -232,19 +251,6 @@ AudioWaveform.prototype.init = function () {
             'reason': reason
         });
     }.bind(this));
-
-    /**
-     * Val Change Trigger - An event handler to trigger a change event for fields when the value is changed programmatically.
-     */
-    (function($){
-        var originalVal = $.fn.val;
-        $.fn.val = function(){
-            var result =originalVal.apply(this,arguments);
-            if(arguments.length>0)
-                $(this).change();
-            return result;
-        };
-    })(jQuery);
 };
 
 /**

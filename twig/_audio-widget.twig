@@ -3,12 +3,14 @@
 {% set option = {
 class:       field.class|default(''),
 label:       field.label|default(''),
-extensions:  app.extensions.enabled.Html5Audio.config['allowed-filetypes'],
+extensions:  field.extensions|default(app.extensions.enabled.Html5Audio.config['allowed-filetypes']),
 upload:      field.upload|default(''),
 can_upload:  field.canUpload
 } %}
 
 {#=== INIT ===========================================================================================================#}
+
+{% set audio = context.content.get(contentkey) %}
 
 {% set attr_filepath = {
 class:       'form-control audioinput',
@@ -16,14 +18,14 @@ id:          'field-' ~ key,
 name:        name,
 type:        'text',
 placeholder: __('field.general.allowed-filetypes') ~ ' ' ~ option.extensions|join(', ') ~ ' …',
-value:       context.content.get(contentkey),
+value:       audio|default(''),
 } %}
 
 {% set attr_upload = {
 accept:       option.extensions ? '.' ~ option.extensions|join(',.') : '',
 data_upload:  {type: 'File', key: key}|json_encode(),
 data_url:     url('upload', {'handler': option.upload}),
-id:           'audioupload-' ~ key,
+id:           'fileupload-' ~ key,
 name:         'files[]',
 type:         'file',
 } %}

@@ -127,12 +127,12 @@ EOM;
         // Enable HTML Snippets
         $this->app['htmlsnippets'] = true;
 
-        if ($this->config['waveform']['enabled'] == true){
+        if ($this->config['waveform']['enabled'] == true) {
             $this->addCss('assets/css/html5-audio.css');
             $this->addJavascript('assets/audioHelper.js', true);
             $this->addJavascript('assets/js/wavesurfer.min.js', true);
             $this->addJavascript('assets/waveform.js', true);
-        }else{
+        } else {
             $this->addJavascript('assets/audio.js', true);
         }
     }

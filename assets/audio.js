@@ -6,6 +6,7 @@
 function Audio(element, types) {
     this.container = $('#editcontent').find('fieldset#'+element);
     this.file = this.container.find('input.audioinput');
+    this.fileName = this.file.val();
     this.audio = this.container.find('audio');
     this.source = this.container.find('source');
     this.types = types;
@@ -25,9 +26,27 @@ Audio.prototype = Object.create({});
 Audio.prototype.constructor = Audio;
 
 /**
+ * Listens for file changes, as JS made updates to the hidden field do not
+ * trigger any events
+ */
+Audio.prototype.listenForFileChange = function () {
+    var self = this;
+
+    setTimeout(function () {
+        if (self.file.val() !== self.fileName) {
+            self.fileName = self.file.val();
+            self.file.trigger('change');
+        }
+
+        self.listenForFileChange();
+    }, 500);
+};
+
+/**
  * init - Audio init method
  */
 Audio.prototype.init = function () {
+    this.listenForFileChange();
 
     var self = this;
 
@@ -45,17 +64,4 @@ Audio.prototype.init = function () {
         }
 
     }.bind(this));
-
-    /**
-     * Val Change Trigger - An event handler to trigger a change event for fields when the value is changed programmatically.
-     */
-    (function($){
-        var originalVal = $.fn.val;
-        $.fn.val = function(){
-            var result =originalVal.apply(this,arguments);
-            if(arguments.length>0)
-                $(this).change();
-            return result;
-        };
-    })(jQuery);
 };

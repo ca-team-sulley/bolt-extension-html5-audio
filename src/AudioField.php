@@ -5,7 +5,6 @@ use Bolt\Field\FieldInterface;
 
 class AudioField implements FieldInterface
 {
-
     public function getName()
     {
         return 'audio';
@@ -23,6 +22,6 @@ class AudioField implements FieldInterface
 
     public function getStorageOptions()
     {
-        return array('default'=>'');
+        return array('default' => '');
     }
 }
