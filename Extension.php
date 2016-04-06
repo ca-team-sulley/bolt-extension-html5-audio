@@ -95,11 +95,11 @@ class Extension extends BaseExtension
 
         if ($this->config['waveform']['enabled'] == true) {
             $this->addCss('assets/css/html5-audio.css');
-            $this->addJavascript('assets/audioHelper.js', true);
+            $this->addJavascript('assets/js/audioHelper.js', true);
             $this->addJavascript('assets/js/wavesurfer.min.js', true);
-            $this->addJavascript('assets/waveform.js', true);
+            $this->addJavascript('assets/js/waveform.js', true);
         } else {
-            $this->addJavascript('assets/audio.js', true);
+            $this->addJavascript('assets/js/audio.js', true);
         }
     }
 }
