@@ -61,7 +61,7 @@ class Extension extends BaseExtension
     /**
      * audioPlayer
      *
-     * a twig function that takes a passed file and returns an audio player.
+     * a twig function that takes a passed file and returns the appropriate audio player.
      *
      * @param string $file
      * @param string $fieldname (optional) define the name of the field in order to properly target the correct field
@@ -72,45 +72,12 @@ class Extension extends BaseExtension
         $this->attachAppropriateAssets();
 
         if ($this->config['waveform']['enabled'] == true){
-            return $player = $this->waveformScript($file, $fieldname);
+            $this->addJavascript('assets/js/waveplayer.init.js', true);
+            return $this->app['twig']->render('_waveplayer.twig', compact('file','fieldname'));
         }
 
-        return $player = "<audio controls preload='none' src='" . $this->app['resources']->getUrl('files') . $file . "'></audio>";
-    }
-
-    /**
-     * waveformScript
-     *
-     * the waveform player to be passed to the frontend.
-     *
-     * @param string $file
-     * @return object $html
-     */
-    public function waveformScript($file, $fieldname)
-    {
-        $html = <<< EOM
-        <fieldset class="audio" id="$fieldname">
-        <div class="waveform_view">
-        <div class="wave"></div>
-        <div class="wave_zoom">
-        <i class="fa fa-search-minus zoom-out"></i>
-        <input class="zoom-slider" type="range" min="1" max="100" value="0">
-        <i class="fa fa-search-plus zoom-in"></i>
-        </div>
-        <div class="wave_controls pull-left">
-        <span class="player-control">
-        <button class="button playpause-button"><i class="fa fa-play"></i> Play / <i class="fa fa-pause"></i> Pause</button>
-        <button class="button stop-button"><i class="fa fa-stop"></i> Stop</button> 
-        </span>
-        </div>
-        <div class="pull-right track-time">
-        <span class="current">-</span> / <span class="total">-</span>
-        </div>
-        </div>
-        <source src="$file">        
-EOM;
-        $this->addJavascript('assets/js/waveplayer.init.js', true);
-        return $html;
+        $filename = $this->app['resources']->getUrl('files') . $file;
+        return $this->app['twig']->render('_audioplayer.twig', compact('filename'));
     }
 
     /**
