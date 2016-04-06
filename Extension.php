@@ -29,17 +29,14 @@ class Extension extends BaseExtension
     public function before()
     {
         if ($this->app['config']->getWhichEnd()=='backend') {
-
             $this->attachAppropriateAssets();
-
+            
             $this->translationDir = __DIR__.'/locales/' . substr($this->app['locale'], 0, 2);
-            if (is_dir($this->translationDir))
-            {
+
+            if (is_dir($this->translationDir)) {
                 $iterator = new \DirectoryIterator($this->translationDir);
-                foreach ($iterator as $fileInfo)
-                {
-                    if ($fileInfo->isFile())
-                    {
+                foreach ($iterator as $fileInfo) {
+                    if ($fileInfo->isFile()) {
                         $this->app['translator']->addLoader('yml', new TranslationLoader\YamlFileLoader());
                         $this->app['translator']->addResource('yml', $fileInfo->getRealPath(), $this->app['locale']);
                     }
@@ -71,7 +68,7 @@ class Extension extends BaseExtension
     {
         $this->attachAppropriateAssets();
 
-        if ($this->config['waveform']['enabled'] == true){
+        if ($this->config['waveform']['enabled'] == true) {
             $this->addJavascript('assets/js/waveplayer.init.js', true);
             return $this->app['twig']->render('_waveplayer.twig', compact('file','fieldname'));
         }
