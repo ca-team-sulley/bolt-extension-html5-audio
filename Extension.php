@@ -15,14 +15,10 @@ class Extension extends BaseExtension
     {
         $this->app['config']->fields->addField(new AudioField());
 
-        if ($this->app['config']->getWhichEnd()=='backend') {
-            $this->app->before(array($this, 'before'));
+        // Override the default twig files with the ones under templates
+        $this->app['twig.loader.filesystem']->prependPath(__DIR__ . '/twig');
 
-            // Override the default twig files with the ones under templates
-            $this->app['twig.loader.filesystem']->prependPath(__DIR__ . '/twig');
-
-            $this->attachAppropriateAssets();
-        }
+        $this->app->before(array($this, 'before'));
 
         $this->addTwigFunction("audioPlayer", "audioPlayer");
     }
@@ -32,16 +28,21 @@ class Extension extends BaseExtension
      */
     public function before()
     {
-        $this->translationDir = __DIR__.'/locales/' . substr($this->app['locale'], 0, 2);
-        if (is_dir($this->translationDir))
-        {
-            $iterator = new \DirectoryIterator($this->translationDir);
-            foreach ($iterator as $fileInfo)
+        if ($this->app['config']->getWhichEnd()=='backend') {
+
+            $this->attachAppropriateAssets();
+
+            $this->translationDir = __DIR__.'/locales/' . substr($this->app['locale'], 0, 2);
+            if (is_dir($this->translationDir))
             {
-                if ($fileInfo->isFile())
+                $iterator = new \DirectoryIterator($this->translationDir);
+                foreach ($iterator as $fileInfo)
                 {
-                    $this->app['translator']->addLoader('yml', new TranslationLoader\YamlFileLoader());
-                    $this->app['translator']->addResource('yml', $fileInfo->getRealPath(), $this->app['locale']);
+                    if ($fileInfo->isFile())
+                    {
+                        $this->app['translator']->addLoader('yml', new TranslationLoader\YamlFileLoader());
+                        $this->app['translator']->addResource('yml', $fileInfo->getRealPath(), $this->app['locale']);
+                    }
                 }
             }
         }
@@ -71,12 +72,10 @@ class Extension extends BaseExtension
         $this->attachAppropriateAssets();
 
         if ($this->config['waveform']['enabled'] == true){
-            $player = $this->waveformScript($file, $fieldname);
-        }else{
-            $player = "<audio controls preload='none' src='" . $this->app['paths']['rooturl'] . "files/" . $file . "'></audio>";
+            return $player = $this->waveformScript($file, $fieldname);
         }
 
-        return $player;
+        return $player = "<audio controls preload='none' src='" . $this->app['resources']->getUrl('files') . $file . "'></audio>";
     }
 
     /**
