@@ -12,6 +12,11 @@
             "email": "team-sulley@cainc.com"
         }
     ],
+    "keywords": [
+        "field",
+        "audio",
+        "backend"
+    ],
     "minimum-stability": "dev",
     "prefer-stable": true,
     "config": {
