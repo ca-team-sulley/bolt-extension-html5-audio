@@ -24,7 +24,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Bolt\\Extension\\Cainc\\Html5Audio\\": "src"
+            "Bolt\\Extension\\Cainc\\Html5Audio\\": ["", "src"]
         }
     },
     "require-dev": {
