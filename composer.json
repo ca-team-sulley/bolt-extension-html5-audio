@@ -27,13 +27,9 @@
             "Bolt\\Extension\\Cainc\\Html5Audio\\": ["", "src"]
         }
     },
-    "require-dev": {
-        "mockery/mockery": "~0.9"
-    },
     "autoload-dev": {
         "files": [
-            "init.php",
-            "Extension.php"
+            "init.php"
         ]
     },
     "extra": {
