@@ -3,13 +3,17 @@
     "description": "Upload audio files, then use a waveform or html5 based player to play audio files.",
     "type": "bolt-extension",
     "require": {
-        "bolt/bolt": ">=2.0.0,<3.0.0"
+        "bolt/bolt": "^3.0"
     },
     "license": "MIT",
     "authors": [
         {
             "name": "Team Sulley",
             "email": "team-sulley@cainc.com"
+        },
+        {
+            "name": "Pablo Sánchez",
+            "email": "psanchezg@gmail.com"
         }
     ],
     "keywords": [
@@ -23,14 +27,24 @@
         "preferred-install": "dist"
     },
     "autoload": {
-        "files": [
-            "init.php"
-        ],
         "psr-4": {
-            "Bolt\\Extension\\Cainc\\Html5Audio\\": ["", "src"]
+            "Bolt\\Extension\\Cainc\\Html5Audio\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Bolt\\Extension\\Cainc\\Html5Audio\\Tests\\": "tests",
+            "Bolt\\Tests\\": "vendor/bolt/bolt/tests/phpunit/unit/"
         }
     },
     "extra": {
-        "bolt-assets": "assets"
+        "bolt-assets": "web",
+        "bolt-class": "Bolt\\Extension\\Cainc\\Html5Audio\\Html5AudioExtension",
+        "bolt-screenshots": [
+            "screenshots/backend_audio.png",
+            "screenshots/backend_waveform.png",
+            "screenshots/frontend_audio.png",
+            "screenshots/frontend_waveform.png"
+        ]
     }
 }
