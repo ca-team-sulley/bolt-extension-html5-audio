@@ -1,0 +1,20 @@
+<div class="audio" id="audio">
+    <div class="waveform_view">
+        <div class="wave"></div>
+        <div class="wave_zoom">
+            <i class="fa fa-search-minus zoom-out"></i>
+            <input class="zoom-slider" type="range" min="1" max="100" value="0">
+            <i class="fa fa-search-plus zoom-in"></i>
+        </div>
+        <div class="wave_controls pull-left">
+        <span class="player-control">
+        <button class="button playpause-button"><i class="fa fa-play"></i> {{ __('Play') }} / <i class="fa fa-pause"></i> {{ __('Pause') }}</button>
+        <button class="button stop-button"><i class="fa fa-stop"></i> {{ __('Stop') }}</button>
+        </span>
+        </div>
+        <div class="pull-right track-time">
+            <span class="current">-</span> / <span class="total">-</span>
+        </div>
+    </div>
+    <div class="audioinput" style="display:none">{{ file }}</div>
+</div>

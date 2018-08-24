@@ -1,0 +1,26 @@
+<div class='waveform_view'>
+    <div class='wave'></div>
+    <div class='wave_zoom'>
+        <i class='fa fa-search-minus zoom-out'></i>
+        <input class='zoom-slider' type='range' min='1' max='100' value='0'>
+        <i class='fa fa-search-plus zoom-in'></i>
+    </div>
+    <div class='clearfix track-time wave_controls'>
+        <span class='current'>-</span> / <span class='total'>-</span>
+    </div>
+    <div class='wave_controls clearfix'>
+        <span class='player-control'>
+          <a class='btn btn-tertiary playpause-button'><i class="fa fa-play"></i> {{ __('Play') }} / <i class="fa fa-pause"></i> {{ __('Pause') }}</a>
+          <a class='btn btn-danger stop-button'><i class='fa fa-stop'></i> {{__('Stop')}}</a> </span>
+    </div>
+</div>
+
+<script type="text/javascript">
+    /**
+     * Create an instance of AudioWaveform and instantiate it
+     */
+    $(document).ready( function() {
+        var waveform = new AudioWaveform('{{ key }}', {{ option.extensions|json_encode()|raw }});
+        waveform.init();
+    });
+</script>
