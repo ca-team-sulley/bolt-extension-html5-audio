@@ -6,12 +6,12 @@
 {#=== OPTIONS ========================================================================================================#}
 
 {% set option = {
-  class:       field.class|default(''),
-  label:       field.label|default(''),
-  extensions:  field.extensions|default(config['allowed-filetypes']),
-  upload:      field.upload|default(''),
-  can_upload:  field.canUpload|default(true),
-  info:        field.info|default('info.upload.file')
+    class:       field.class|default(''),
+    label:       field.label|default(''),
+    extensions:  field.extensions|default(config['allowed-filetypes']),
+    upload:      field.upload|default(''),
+    can_upload:  field.canUpload|default(true),
+    info:        field.info|default('info.upload.file')
 } %}
 
 {#=== INIT ===========================================================================================================#}
@@ -19,24 +19,24 @@
 {% set audio = context.content.get(contentkey) %}
 
 {% set attr_filepath = {
-  class:       'form-control audioinput path ui-autocomplete-input',
-  id:          'field-' ~ key,
-  name:        name,
-  type:        'text',
-  placeholder: __('field.general.allowed-filetypes') ~ ' ' ~ option.extensions|join(', ') ~ ' …',
-  value:       audio|default(''),
-  'data-autocomplete-url': path('file/autocomplete', {'ext': option.extensions|join(',')})
+    class:       'form-control audioinput path ui-autocomplete-input',
+    id:          'field-' ~ key,
+    name:        name,
+    type:        'text',
+    placeholder: __('field.general.allowed-filetypes') ~ ' ' ~ option.extensions|join(', ') ~ ' …',
+    value:       audio|default(''),
+    'data-autocomplete-url': path('file/autocomplete', {'ext': option.extensions|join(',')})
 } %}
 
 {#  data_upload:  {type: 'File', key: key}|json_encode(),#}
 
 {% set attr_upload = {
-  accept:       option.extensions ? '.' ~ option.extensions|join(',.') : '',
-  data_url:     path('upload', { 'handler': option.upload }),
-  id:           'fileupload-' ~ key,
-  name:         'files[]',
-  type:         'file',
-  multiple:     false
+    accept:       option.extensions ? '.' ~ option.extensions|join(',.') : '',
+    data_url:     path('upload', { 'handler': option.upload }),
+    id:           'fileupload-' ~ key,
+    name:         'files[]',
+    type:         'file',
+    multiple:     false
 } %}
 
 {#=== BLOCKS =========================================================================================================#}
@@ -68,32 +68,35 @@
     <label class="main col-xs-12">{{ labelkey }}: {{ field_info|default('') }}</label>
 
     <div class="col-xs-12 elm-dropzone clearfix">
-      <div class="row">
-          <div class="col-xs-7">
-            <input{{ macro.attr(attr_filepath) }}>
-            {% set can_upload = context.can.upload and option.can_upload %}
-            {# Progress info #}
-            {# Progressbar #}
-            <div class="buic-progress" data-bolt-widget="buicProgress"></div>
-            {# {{ block.progress(key) }} #}
-            {# Buttons #}
-            {{ macro.upload_buttons([], attr_upload, option.upload, can_upload, false) }}
-        
-            {# Infotext #}
-            {% if not ismobileclient() %}
-                <div class="hidden-xs" style="clear:left"><label>{{ app.translator.trans('info.upload.filesmall', {}, 'infos') }}</label></div>
-            {% endif %}
-          </div>
-          <div class="col-xs-5">
-            <div class="right-on-large">
-              <label>{{ __('general.phrase.preview') }}</label>
-              <div class="content-preview imageholder">
-                {% if config.get('waveform')['enabled'] == true %}
-                    {% include '_waveform.twig' %}
-                {% else %}
-                    {% include '_audio.twig' %}
+        <div class="row">
+            <div class="col-xs-7">
+                <input{{ macro.attr(attr_filepath) }}>
+                {% set can_upload = context.can.upload and option.can_upload %}
+                {# Progress info #}
+                {# Progressbar #}
+                <div class="buic-progress" data-bolt-widget="buicProgress"></div>
+                {# {{ block.progress(key) }} #}
+                {# Buttons #}
+                {{ macro.upload_buttons([], attr_upload, option.upload, can_upload, false) }}
+
+                {# Infotext #}
+                {% if not ismobileclient() %}
+                    <div class="hidden-xs" style="clear:left">
+                        <label>{{ app.translator.trans('info.upload.filesmall', {}, 'infos') }}</label>
+                    </div>
                 {% endif %}
-              </div>
+            </div>
+            <div class="col-xs-5">
+                <div class="right-on-large">
+                    <label>{{ __('general.phrase.preview') }}</label>
+                    <div class="content-preview imageholder">
+                        {% if config.get('waveform')['enabled'] == true %}
+                            {% include '_waveform.twig' %}
+                        {% else %}
+                            {% include '_audio.twig' %}
+                        {% endif %}
+                    </div>
+                </div>
             </div>
         </div>
     </div>

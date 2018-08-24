@@ -53,15 +53,14 @@ Audio.prototype.init = function () {
     /**
      * On Change - An event handler for when the audio filename field changes.
      */
-    self.file.on('change', function(){
+    self.file.on('change', function () {
         var type = this.file.val().split('.').pop();
         var valid_type = $.inArray(type, this.types);
 
-        if(valid_type > -1){
+        if (valid_type > -1) {
             this.source.attr('src', this.filepath + this.file.val());
             this.source.attr('type', 'audio/' + type);
             this.audio.trigger('load');
         }
-
     }.bind(this));
 };

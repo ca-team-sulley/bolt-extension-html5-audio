@@ -1,4 +1,5 @@
 <?php
+
 namespace Bolt\Extension\Cainc\Html5Audio;
 
 use Bolt\Extension\SimpleExtension;
@@ -19,11 +20,9 @@ class Html5AudioExtension extends SimpleExtension
 
     protected function registerTwigPaths()
     {
-        return [
-            'templates'
-        ];
+        return ['templates'];
     }
-    
+
     /**
      * audioPlayer
      *
@@ -36,56 +35,65 @@ class Html5AudioExtension extends SimpleExtension
     public function audioPlayer($file, $fieldname = 'audio')
     {
         // get the config file name if using one. otherwise its 'default'
-    		// check for config settings
+        // check for config settings
         $filename = $this->app['resources']->getUrl('files') . $file;
-        if ($this->config['waveform']['enabled'] == true) {
+
+        if ($this->config['waveform']['enabled']) {
             return $this->app['twig']->render('_waveplayer.twig', compact('file', 'fieldname'));
         }
+
         return $this->app['twig']->render('_audioplayer.twig', compact('filename'));
     }
 
     /**
-  	 * {@inheritdoc}
-  	 */
-  	protected function registerTwigFunctions()
-  	{
-  		return [
-  			'audioPlayer' => [ 'audioPlayer' ],
-  		];
-  	}
-    
+     * {@inheritdoc}
+     */
+    protected function registerTwigFunctions()
+    {
+        return [
+            'audioPlayer' => ['audioPlayer'],
+        ];
+    }
+
     protected function registerAssets()
     {
         $styleBack = (new Stylesheet('css/html5-audio.css'))
             ->setZone(Zone::BACKEND);
-        if ($this->config['waveform']['enabled'] == true) {
-          $style = (new Stylesheet('css/html5-audio_front.css'));
-          $helperjs = (new JavaScript('js/audioHelper_front.js'));
-          $helperBackjs = (new JavaScript('js/audioHelper.js'))->setZone(Zone::BACKEND);
-          $wavesurferjs = (new JavaScript('js/wavesurfer_front.min.js'));
-          $wavesurferBackjs = (new JavaScript('js/wavesurfer.min.js'))->setZone(Zone::BACKEND);
-          $waveformjs = (new JavaScript('js/waveform_front.js'));
-          $waveformBackjs = (new JavaScript('js/waveform.js'))->setZone(Zone::BACKEND);
-          $waveplayerjs = (new JavaScript('js/waveplayer.init.js'))
-            ->setLate(true)
-            ->setPriority(5)
-            ->setZone(Zone::FRONTEND);
-          return [
-              $style, $styleBack, 
-              $helperjs, $helperBackjs,
-              $wavesurferjs, $wavesurferBackjs,
-              $waveformjs, $waveformBackjs,
-              $waveplayerjs
-          ];
-        } else {
-          $audiojs = (new JavaScript('js/audio.js'))->setZone(Zone::BACKEND);
-          return [
-              $styleBack,
-              $audiojs
-          ];
+
+        if ($this->config['waveform']['enabled']) {
+            $style = (new Stylesheet('css/html5-audio_front.css'));
+            $helperjs = (new JavaScript('js/audioHelper_front.js'));
+            $helperBackjs = (new JavaScript('js/audioHelper.js'))->setZone(Zone::BACKEND);
+            $wavesurferjs = (new JavaScript('js/wavesurfer_front.min.js'));
+            $wavesurferBackjs = (new JavaScript('js/wavesurfer.min.js'))->setZone(Zone::BACKEND);
+            $waveformjs = (new JavaScript('js/waveform_front.js'));
+            $waveformBackjs = (new JavaScript('js/waveform.js'))->setZone(Zone::BACKEND);
+            $waveplayerjs = (new JavaScript('js/waveplayer.init.js'))
+                ->setLate(true)
+                ->setPriority(5)
+                ->setZone(Zone::FRONTEND);
+
+            return [
+                $style,
+                $styleBack,
+                $helperjs,
+                $helperBackjs,
+                $wavesurferjs,
+                $wavesurferBackjs,
+                $waveformjs,
+                $waveformBackjs,
+                $waveplayerjs,
+            ];
         }
+
+        $audiojs = (new JavaScript('js/audio.js'))->setZone(Zone::BACKEND);
+
+        return [
+            $styleBack,
+            $audiojs
+        ];
     }
-    
+
     /**
      * {@inheritdoc}
      */
@@ -93,6 +101,7 @@ class Html5AudioExtension extends SimpleExtension
     {
         $this->config = $this->getConfig();
         $this->app = $app;
+
         $app['html5audio.config'] = $app->share(
             function () {
                 return new ParameterBag($this->getConfig());
@@ -101,13 +110,13 @@ class Html5AudioExtension extends SimpleExtension
     }
 
     /**
-  	 * @return array
-  	 */
-  	protected function getDefaultConfig()
-  	{
-  		return [
-				'allowed-filetypes' => ['mp3', 'ogg', 'wav', 'm4a'],
-				'waveform'          => [ 'enabled' => true ]
-  		];
-  	}
+     * @return array
+     */
+    protected function getDefaultConfig()
+    {
+        return [
+            'allowed-filetypes' => ['mp3', 'ogg', 'wav', 'm4a'],
+            'waveform' => ['enabled' => true],
+        ];
+    }
 }

@@ -10,8 +10,9 @@
     </div>
     <div class='wave_controls clearfix'>
         <span class='player-control'>
-          <a class='btn btn-tertiary playpause-button'><i class="fa fa-play"></i> {{ __('Play') }} / <i class="fa fa-pause"></i> {{ __('Pause') }}</a>
-          <a class='btn btn-danger stop-button'><i class='fa fa-stop'></i> {{__('Stop')}}</a> </span>
+            <a class='btn btn-tertiary playpause-button'><i class="fa fa-play"></i> {{ __('Play') }} / <i class="fa fa-pause"></i> {{ __('Pause') }}</a>
+            <a class='btn btn-danger stop-button'><i class='fa fa-stop'></i> {{__('Stop')}}</a>
+        </span>
     </div>
 </div>
 
@@ -19,7 +20,7 @@
     /**
      * Create an instance of AudioWaveform and instantiate it
      */
-    $(document).ready( function() {
+    $(document).ready(function() {
         var waveform = new AudioWaveform('{{ key }}', {{ option.extensions|json_encode()|raw }});
         waveform.init();
     });

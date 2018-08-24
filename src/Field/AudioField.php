@@ -1,4 +1,5 @@
 <?php
+
 namespace Bolt\Extension\Cainc\Html5Audio\Field;
 
 use Bolt\Storage\EntityManager;
@@ -26,7 +27,7 @@ class AudioField extends FieldTypeBase
     {
         return [
             'default' => null,
-            'notnull' => false
+            'notnull' => false,
         ];
     }
 }

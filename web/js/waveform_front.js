@@ -5,21 +5,25 @@
  */
 function AudioWaveform(element, types, form) {
     var file = 'div';
+
     if (!form) {
-      form = 'fieldset';
-      file = 'input';
+        form = 'fieldset';
+        file = 'input';
     } else {
-      form = 'div';
+        form = 'div';
     }
+
     this.container = $(document).find(form+'#'+element);
     this.timer = 0;
     this.wavesurfer = null;
     this.file = this.container.find(file+'.audioinput');
+
     if (file == 'div') {
-      this.fileName = this.file.html();
+        this.fileName = this.file.html();
     } else {
-      this.fileName = this.file.val();
+        this.fileName = this.file.val();
     }
+
     this.source = this.container.find('source').attr('src');
     this.types = types;
     this.filepath = document.location.origin + '/files/';
@@ -76,6 +80,7 @@ AudioWaveform.prototype.cleanup = function () {
     this.zoomIn.off();
     this.playPause.off();
     this.stop.off();
+
     clearInterval(self.timer);
 };
 
@@ -108,14 +113,14 @@ AudioWaveform.prototype.showError = function (msgConfig) {
  *
  */
 AudioWaveform.prototype.loadFile = function () {
-    if(this.types != undefined){
+    if (this.types != undefined) {
         var type = this.fileName.split('.').pop();
         var valid_type = $.inArray(type, this.types);
 
-        if(valid_type > -1){
+        if (valid_type > -1) {
             this.wavesurfer.load(this.filepath + this.fileName);
         }
-    }else{
+    } else {
         this.wavesurfer.load(this.filepath + this.source);
     }
 };
@@ -151,7 +156,7 @@ AudioWaveform.prototype.init = function () {
     /**
      * On Change - An event handler for when the audio filename field changes.
      */
-    self.file.on('change', function(){
+    self.file.on('change', function () {
         this.loadFile();
     }.bind(this));
 
@@ -182,7 +187,7 @@ AudioWaveform.prototype.init = function () {
          * Slider Zoom Out Button Functionality
          * @param {MouseEvent} e
          */
-        self.zoomOut.on('click', function(e){
+        self.zoomOut.on('click', function (e) {
             e.preventDefault();
 
             self.setZoom(-zoomFactor);
@@ -192,7 +197,7 @@ AudioWaveform.prototype.init = function () {
          * Slider Zoom In Button Functionality
          * @param {MouseEvent} e
          */
-        self.zoomIn.on('click', function(e){
+        self.zoomIn.on('click', function (e) {
             e.preventDefault();
 
             self.setZoom(zoomFactor);
@@ -202,13 +207,13 @@ AudioWaveform.prototype.init = function () {
          * If the waveform is paused...
          * @param {MouseEvent} e
          */
-        self.playPause.on('click', function(e) {
+        self.playPause.on('click', function (e) {
             e.preventDefault();
             self.wavesurfer.playPause();
 
             // Show the progress of the track in time, but only if the audio is playing.
-            if(self.wavesurfer.isPlaying()) {
-                self.timer = setInterval(function() {
+            if (self.wavesurfer.isPlaying()) {
+                self.timer = setInterval(function () {
                     // We're getting called continuously, so make sure we're still playing; the audio could have
                     // reached the end, the user hit Play/Pause again or Stop, etc.
                     if(self.wavesurfer.isPlaying()) {
@@ -226,10 +231,10 @@ AudioWaveform.prototype.init = function () {
          * If the waveform is stopped...
          * @param {MouseEvent} e
          */
-        self.stop.on('click', function(e){
+        self.stop.on('click', function (e) {
             e.preventDefault();
 
-            if(self.wavesurfer.isPlaying()){
+            if (self.wavesurfer.isPlaying()) {
                 self.wavesurfer.stop();
                 clearInterval(self.timer);
             }
@@ -246,11 +251,12 @@ AudioWaveform.prototype.init = function () {
     /**
      * On Error - An event handler for when a track cannot load into the waveform.
      */
-    this.wavesurfer.on('error', function(){
+    this.wavesurfer.on('error', function () {
         this.container.find('.wave').remove();
         this.container.find('.waveform_view').remove();
 
         var reason;
+
         if (this.source && this.source.length > 0) {
             reason = "invalid file reference '" + this.source + "'";
         } else {

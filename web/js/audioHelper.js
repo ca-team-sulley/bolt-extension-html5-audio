@@ -10,12 +10,15 @@ function formatTimeMilliseconds(time) {
     var minutes = Math.floor(time % 36000 / 60);
     var seconds = Math.floor(time % 36000 % 60);
     var milliseconds = (time % 1).toFixed(3).toString().replace('0.', '');
+
     if (minutes < 10) {
         minutes = '0' + minutes;
     }
+
     if (seconds < 10) {
         seconds = '0' + seconds;
     }
+
     return (minutes + ':' + seconds + ':' + milliseconds);
 }
 
@@ -44,7 +47,7 @@ function showDialog(config) {
         throw new Error ("Developer Error: config object for 'ShowDialog' is empty or null");
     }
 
-    var cb = config.cb || function(){};
+    var cb = config.cb || function () {};
 
     $(config.selector || '#dialog').dialog({
         title: config.title || '',
